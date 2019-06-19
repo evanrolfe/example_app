@@ -1,10 +1,11 @@
 import Config from '../config/config';
-class ItemService {
+
+class PostService {
   constructor() {
     this.config = new Config();
   }
 
-  async retrieveItems() {
+  async retrievePosts() {
     return fetch(this.config.ITEM_COLLECTION_URL)
       .then(response => {
         if (!response.ok) {
@@ -13,7 +14,7 @@ class ItemService {
         return response.json();
       })
       .then(json => {
-        console.log("Retrieved items:");
+        console.log("Retrieved posts:");
         console.log(json);
         return json;
       })
@@ -22,18 +23,18 @@ class ItemService {
       });
   }
 
-  async getItem(itemId) {
-    console.log("ItemService.getItem():");
-    console.log("Item: " + itemId);
-    return fetch("http://localhost:3001/posts/" + itemId + ".json")
+  async getPost(postId) {
+    console.log("PostService.getPost():");
+    console.log("Post: " + postId);
+    return fetch("http://localhost:3001/posts/" + postId + ".json")
       .then(response => {
         if (!response.ok) {
             this.handleResponseError(response);
         }
         return response.json();
       })
-      .then(item => {
-          return item;
+      .then(post => {
+          return post;
         }
       )
       .catch(error => {
@@ -41,20 +42,20 @@ class ItemService {
       });
   }
 
-  async createItem(item) {
-    console.log("ItemService.createItem():");
-    console.log(item);
-    return Promise.resolve(item);
+  async createPost(post) {
+    console.log("PostService.createPost():");
+    console.log(post);
+    return Promise.resolve(post);
   }
 
-  async deleteItem(itemId) {
-    console.log("ItemService.deleteItem():");
-    console.log("item ID:" + itemId);
+  async deletePost(postId) {
+    console.log("PostService.deletePost():");
+    console.log("post ID:" + postId);
   }
 
-  async updateItem(item) {
-    console.log("ItemService.updateItem():");
-    console.log(item);
+  async updatePost(post) {
+    console.log("PostService.updatePost():");
+    console.log(post);
   }
 
   handleResponseError(response) {
@@ -64,4 +65,4 @@ class ItemService {
     console.log(error.message);
   }
 }
-export default ItemService;
+export default PostService;
