@@ -7,13 +7,13 @@ class SecretsController < ApplicationController
   # GET /secrets
   # GET /secrets.json
   def index
-    @secrets = Secret.where(user_id: current_user.id)
+    @secrets = Secret.all #where(user_id: current_user.id)
   end
 
   # GET /secrets/1
   # GET /secrets/1.json
   def show
-    authorize @secret, :show?
+    #authorize @secret, :show?
   end
 
   # GET /secrets/new
@@ -23,7 +23,7 @@ class SecretsController < ApplicationController
 
   # GET /secrets/1/edit
   def edit
-    authorize @secret, :update?
+    #authorize @secret, :update?
   end
 
   # POST /secrets
@@ -74,6 +74,6 @@ class SecretsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def secret_params
-      params.require(:secret).permit(:name, :value).merge(user_id: current_user.id)
+      params.require(:secret).permit(:name, :value)#.merge(user_id: current_user.id)
     end
 end
