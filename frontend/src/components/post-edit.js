@@ -37,7 +37,7 @@ class PostEdit extends Component {
     const value = event.target.value;
     const name = event.target.name;
 
-    const newState = Object.assign({ [name]: value }, this.state);
+    const newState = Object.assign({}, this.state);
     newState.post[name] = value;
 
     this.setState(newState);
