@@ -34,6 +34,10 @@ class PostsTable extends Component {
       <div className="App">
           <h1>Posts</h1>
 
+          <p>
+          <Link to="/posts/new">New Post</Link>
+          </p>
+
           <table className="posts">
             <thead>
               <tr>
@@ -54,6 +58,7 @@ class PostsTable extends Component {
               )}
             </tbody>
           </table>
+
       </div>
     );
   }

@@ -45,17 +45,70 @@ class PostService {
   async createPost(post) {
     console.log("PostService.createPost():");
     console.log(post);
-    return Promise.resolve(post);
+    const url = "http://localhost:3001/posts.json"
+
+    return fetch(url, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+            "Content-Type": "application/json"
+        },
+      body: JSON.stringify(post)
+    })
+      .then(response => {
+       if (!response.ok) {
+            this.handleResponseError(response);
+        }
+        return response.json();
+      })
+      .catch(error => {
+        this.handleError(error);
+      });
   }
 
   async deletePost(postId) {
     console.log("PostService.deletePost():");
     console.log("post ID:" + postId);
+
+    const url = "http://localhost:3001/posts/" + postId + ".json"
+
+    return fetch(url, {
+      method: "DELETE",
+      mode: "cors"
+    })
+      .then(response => {
+        if (!response.ok) {
+          this.handleResponseError(response);
+        }
+      })
+      .catch(error => {
+        this.handleError(error);
+      });
   }
 
   async updatePost(post) {
     console.log("PostService.updatePost():");
     console.log(post);
+
+    const url = "http://localhost:3001/posts/" + post.id + ".json"
+
+    return fetch(url, {
+      method: "PATCH",
+      mode: "cors",
+      headers: {
+            "Content-Type": "application/json"
+        },
+      body: JSON.stringify(post)
+    })
+      .then(response => {
+       if (!response.ok) {
+            this.handleResponseError(response);
+        }
+        return response.json();
+      })
+      .catch(error => {
+        this.handleError(error);
+      });
   }
 
   handleResponseError(response) {
