@@ -14,8 +14,6 @@ class SecretService {
         return response.json();
       })
       .then(json => {
-        console.log("Retrieved secrets:");
-        console.log(json);
         return json;
       })
       .catch(error => {
@@ -24,8 +22,6 @@ class SecretService {
   }
 
   async getSecret(secretId) {
-    console.log("SecretService.getSecret():");
-    console.log("Secret: " + secretId);
     return fetch("http://localhost:3001/secrets/" + secretId + ".json")
       .then(response => {
         if (!response.ok) {
@@ -43,8 +39,6 @@ class SecretService {
   }
 
   async createSecret(secret) {
-    console.log("SecretService.createSecret():");
-    console.log(secret);
     const url = "http://localhost:3001/secrets.json"
 
     return fetch(url, {
@@ -67,9 +61,6 @@ class SecretService {
   }
 
   async deleteSecret(secretId) {
-    console.log("SecretService.deleteSecret():");
-    console.log("secret ID:" + secretId);
-
     const url = "http://localhost:3001/secrets/" + secretId + ".json"
 
     return fetch(url, {
@@ -87,9 +78,6 @@ class SecretService {
   }
 
   async updateSecret(secret) {
-    console.log("SecretService.updateSecret():");
-    console.log(secret);
-
     const url = "http://localhost:3001/secrets/" + secret.id + ".json"
 
     return fetch(url, {

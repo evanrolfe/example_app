@@ -14,8 +14,6 @@ class PostService {
         return response.json();
       })
       .then(json => {
-        console.log("Retrieved posts:");
-        console.log(json);
         return json;
       })
       .catch(error => {
@@ -24,8 +22,6 @@ class PostService {
   }
 
   async getPost(postId) {
-    console.log("PostService.getPost():");
-    console.log("Post: " + postId);
     return fetch("http://localhost:3001/posts/" + postId + ".json")
       .then(response => {
         if (!response.ok) {
@@ -43,8 +39,6 @@ class PostService {
   }
 
   async createPost(post) {
-    console.log("PostService.createPost():");
-    console.log(post);
     const url = "http://localhost:3001/posts.json"
 
     return fetch(url, {
@@ -67,9 +61,6 @@ class PostService {
   }
 
   async deletePost(postId) {
-    console.log("PostService.deletePost():");
-    console.log("post ID:" + postId);
-
     const url = "http://localhost:3001/posts/" + postId + ".json"
 
     return fetch(url, {
@@ -87,9 +78,6 @@ class PostService {
   }
 
   async updatePost(post) {
-    console.log("PostService.updatePost():");
-    console.log(post);
-
     const url = "http://localhost:3001/posts/" + post.id + ".json"
 
     return fetch(url, {
