@@ -7,13 +7,13 @@ class SecretsController < ApplicationController
   # GET /secrets
   # GET /secrets.json
   def index
-    @secrets = Secret.all #where(user_id: current_user.id)
+    @secrets = Secret.where(user_id: current_user.id)
   end
 
   # GET /secrets/1
   # GET /secrets/1.json
   def show
-    #authorize @secret, :show?
+    authorize @secret, :show?
   end
 
   # GET /secrets/new
@@ -23,13 +23,13 @@ class SecretsController < ApplicationController
 
   # GET /secrets/1/edit
   def edit
-    #authorize @secret, :update?
+    authorize @secret, :update?
   end
 
   # POST /secrets
   # POST /secrets.json
   def create
-    @secret = Secret.new(secret_params)
+    @secret = Secret.new(secret_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @secret.save
@@ -45,6 +45,8 @@ class SecretsController < ApplicationController
   # PATCH/PUT /secrets/1
   # PATCH/PUT /secrets/1.json
   def update
+    authorize @secret, :update?
+
     respond_to do |format|
       if @secret.update(secret_params)
         format.html { redirect_to @secret, notice: 'Secret was successfully updated.' }
@@ -59,6 +61,8 @@ class SecretsController < ApplicationController
   # DELETE /secrets/1
   # DELETE /secrets/1.json
   def destroy
+    authorize @secret, :destroy?
+
     @secret.destroy
     respond_to do |format|
       format.html { redirect_to secrets_url, notice: 'Secret was successfully destroyed.' }
