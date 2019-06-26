@@ -29,7 +29,7 @@ class SecretShow extends Component {
       return;
     }
 
-    this.secretService.getSecret(secretId).then(secret => {
+    this.secretService.getSecret(secretId, this.props.auth.getAccessToken()).then(secret => {
         this.setState({
           secret: secret
         });
@@ -42,7 +42,7 @@ class SecretShow extends Component {
     if(window.confirm("Are you sure to delete secret: " + secret.title + " ?")) {
       const secretId = this.props.match.params.id;
 
-      this.secretService.deleteSecret(secretId).then(secret => {
+      this.secretService.deleteSecret(secretId, this.props.auth.getAccessToken()).then(secret => {
           this.props.history.push('/secrets');
         }
       );
@@ -62,6 +62,9 @@ class SecretShow extends Component {
         </p>
         <p>
           <b>Value:</b> {secret.value}
+        </p>
+        <p>
+          <b>User:</b> {secret.user_id}
         </p>
 
         <p>

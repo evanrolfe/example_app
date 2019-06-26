@@ -27,7 +27,7 @@ class SecretEdit extends Component {
   getSecret() {
     const secretId = this.props.match.params.id;
 
-    this.secretService.getSecret(secretId).then(secret => {
+    this.secretService.getSecret(secretId, this.props.auth.getAccessToken()).then(secret => {
         this.setState({ secret: secret });
       }
     );
@@ -44,7 +44,7 @@ class SecretEdit extends Component {
   }
 
   onSubmit() {
-    this.secretService.updateSecret(this.state.secret).then(secret => {
+    this.secretService.updateSecret(this.state.secret, this.props.auth.getAccessToken()).then(secret => {
         this.props.history.push('/secrets/' + this.state.secret.id);
       }
     );

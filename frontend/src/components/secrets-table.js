@@ -40,6 +40,7 @@ class SecretsTable extends Component {
               <tr>
                 <th>Name</th>
                 <th>Value</th>
+                <th>User</th>
               </tr>
             </thead>
 
@@ -48,6 +49,7 @@ class SecretsTable extends Component {
                 <tr key={secret.id}>
                   <td>{secret.name}</td>
                   <td>{secret.value}</td>
+                  <td>{secret.user_id}</td>
                   <td><Link to={"/secrets/" + secret.id}>Show</Link></td>
                 </tr>
               )}

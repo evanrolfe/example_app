@@ -26,8 +26,13 @@ class SecretService {
       });
   }
 
-  async getSecret(secretId) {
-    return fetch("http://localhost:3001/secrets/" + secretId + ".json")
+  async getSecret(secretId, accessToken) {
+    let url = "http://localhost:3001/secrets/" + secretId + ".json"
+    if(accessToken != undefined) {
+      url += '?access_token=' + accessToken;
+    }
+
+    return fetch(url)
       .then(response => {
         if (!response.ok) {
             this.handleResponseError(response);
@@ -43,8 +48,11 @@ class SecretService {
       });
   }
 
-  async createSecret(secret) {
-    const url = "http://localhost:3001/secrets.json"
+  async createSecret(secret, accessToken) {
+    let url = "http://localhost:3001/secrets.json"
+    if(accessToken != undefined) {
+      url += '?access_token=' + accessToken;
+    }
 
     return fetch(url, {
       method: "POST",
@@ -65,8 +73,11 @@ class SecretService {
       });
   }
 
-  async deleteSecret(secretId) {
-    const url = "http://localhost:3001/secrets/" + secretId + ".json"
+  async deleteSecret(secretId, accessToken) {
+    let url = "http://localhost:3001/secrets/" + secretId + ".json"
+    if(accessToken != undefined) {
+      url += '?access_token=' + accessToken;
+    }
 
     return fetch(url, {
       method: "DELETE",
@@ -82,8 +93,11 @@ class SecretService {
       });
   }
 
-  async updateSecret(secret) {
-    const url = "http://localhost:3001/secrets/" + secret.id + ".json"
+  async updateSecret(secret, accessToken) {
+    let url = "http://localhost:3001/secrets/" + secret.id + ".json"
+    if(accessToken != undefined) {
+      url += '?access_token=' + accessToken;
+    }
 
     return fetch(url, {
       method: "PATCH",
