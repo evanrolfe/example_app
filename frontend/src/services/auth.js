@@ -11,7 +11,8 @@ export default class Auth {
     clientID: 'GU0FMwPO5dgiQSHl76J47l3IqB7LoJYL',
     redirectUri: 'http://localhost:3000/auth_callback',
     responseType: 'token id_token',
-    scope: 'openid profile'
+    scope: 'openid profile',
+    audience: 'https://onescan.eu.auth0.com/api/v2/'
   });
 
   login() {

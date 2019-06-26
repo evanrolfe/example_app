@@ -8,6 +8,7 @@ class PostNew extends Component {
     super(props);
     this.postService = new PostService();
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       post: {
@@ -28,7 +29,9 @@ class PostNew extends Component {
   }
 
   onSubmit() {
-    this.postService.createPost(this.state.post).then(post => {
+    const accessToken = this.props.auth.getAccessToken();
+
+    this.postService.createPost(this.state.post, accessToken).then(post => {
         this.props.history.push('/posts/' + post.id);
       }
     );

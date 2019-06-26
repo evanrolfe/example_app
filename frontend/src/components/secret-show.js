@@ -25,6 +25,10 @@ class SecretShow extends Component {
   getSecret() {
     const secretId = this.props.match.params.id;
 
+    if(secretId == 'new') {
+      return;
+    }
+
     this.secretService.getSecret(secretId).then(secret => {
         this.setState({
           secret: secret

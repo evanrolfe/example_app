@@ -5,8 +5,13 @@ class SecretService {
     this.config = new Config();
   }
 
-  async retrieveSecrets() {
-    return fetch("http://localhost:3001/secrets.json")
+  async retrieveSecrets(accessToken) {
+    let url = "http://localhost:3001/secrets.json";
+    if(accessToken != undefined) {
+      url += '?access_token=' + accessToken;
+    }
+
+    return fetch(url)
       .then(response => {
         if (!response.ok) {
           this.handleResponseError(response);
@@ -103,7 +108,7 @@ class SecretService {
       throw new Error("HTTP error, status = " + response.status);
   }
   handleError(error) {
-    console.log(error.message);
+    alert(error.message);
   }
 }
 export default SecretService;

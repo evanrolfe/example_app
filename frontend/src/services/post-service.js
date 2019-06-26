@@ -5,8 +5,13 @@ class PostService {
     this.config = new Config();
   }
 
-  async retrievePosts() {
-    return fetch(this.config.ITEM_COLLECTION_URL)
+  async retrievePosts(accessToken) {
+    let url = this.config.ITEM_COLLECTION_URL;
+    if(accessToken != undefined) {
+      url += '?access_token=' + accessToken;
+    }
+
+    return fetch(url)
       .then(response => {
         if (!response.ok) {
           this.handleResponseError(response);
@@ -21,8 +26,13 @@ class PostService {
       });
   }
 
-  async getPost(postId) {
-    return fetch("http://localhost:3001/posts/" + postId + ".json")
+  async getPost(postId, accessToken) {
+    let url = "http://localhost:3001/posts/" + postId + ".json";
+    if(accessToken != undefined) {
+      url += '?access_token=' + accessToken;
+    }
+
+    return fetch(url)
       .then(response => {
         if (!response.ok) {
             this.handleResponseError(response);
@@ -38,8 +48,12 @@ class PostService {
       });
   }
 
-  async createPost(post) {
-    const url = "http://localhost:3001/posts.json"
+  async createPost(post, accessToken) {
+    console.log("createPost accessToken: " + accessToken);
+    let url = "http://localhost:3001/posts.json"
+    if(accessToken != undefined) {
+      url += '?access_token=' + accessToken;
+    }
 
     return fetch(url, {
       method: "POST",
@@ -60,8 +74,11 @@ class PostService {
       });
   }
 
-  async deletePost(postId) {
-    const url = "http://localhost:3001/posts/" + postId + ".json"
+  async deletePost(postId, accessToken) {
+    let url = "http://localhost:3001/posts/" + postId + ".json"
+    if(accessToken != undefined) {
+      url += '?access_token=' + accessToken;
+    }
 
     return fetch(url, {
       method: "DELETE",
@@ -77,8 +94,11 @@ class PostService {
       });
   }
 
-  async updatePost(post) {
-    const url = "http://localhost:3001/posts/" + post.id + ".json"
+  async updatePost(post, accessToken) {
+    let url = "http://localhost:3001/posts/" + post.id + ".json"
+    if(accessToken != undefined) {
+      url += '?access_token=' + accessToken;
+    }
 
     return fetch(url, {
       method: "PATCH",
@@ -103,7 +123,7 @@ class PostService {
       throw new Error("HTTP error, status = " + response.status);
   }
   handleError(error) {
-    console.log(error.message);
+    alert(error.message);
   }
 }
 export default PostService;
