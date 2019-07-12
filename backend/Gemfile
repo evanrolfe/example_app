@@ -27,6 +27,7 @@ gem 'pundit'
 gem 'rack-cors'
 gem 'jwt'
 gem 'json-jwt'
+gem 'faker'
 
 group :development, :test do
   gem 'pry'

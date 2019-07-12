@@ -11,7 +11,7 @@ class Nav extends React.Component {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/posts">Posts</Link>
+            <Link to="/posts" id="posts_link">Posts</Link>
           </li>
           <li>
             <Link to="/secrets/">Secrets</Link>
@@ -19,14 +19,14 @@ class Nav extends React.Component {
           {
             !this.props.auth.isAuthenticated() && (
               <li>
-                <a href="#" onClick={this.props.auth.login}>Log In</a>
+                <a href="#" onClick={this.props.auth.login} id="login-link">Log In</a>
               </li>
             )
           }
           {
             this.props.auth.isAuthenticated() && (
               <li>
-                <a href="#" onClick={this.props.auth.logout}>Log Out</a>
+                <a href="#" onClick={this.props.auth.logout} id="logout-link">Log Out</a>
               </li>
             )
           }

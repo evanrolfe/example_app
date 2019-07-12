@@ -18,10 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
   def verify_jwt_token
-    return unless params[:access_token].present?
+    access_token = request.headers['Authorization']
+    return unless access_token.present?
 
     client_secret = 'btlFIn_lttkwr_6eT--0HXNB8StMDjnIMZVysAmS770bSEO5mO__l7OsZuHCjxgh'
-    decoded = JWT.decode(params[:access_token], jwk.to_key, true, { algorithm: 'RS256' })
+    decoded = JWT.decode(access_token, jwk.to_key, true, { algorithm: 'RS256' })
 
     @current_user_id = decoded[0]['sub']
   end

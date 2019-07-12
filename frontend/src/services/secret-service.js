@@ -7,11 +7,12 @@ class SecretService {
 
   async retrieveSecrets(accessToken) {
     let url = "http://localhost:3001/secrets.json";
-    if(accessToken != undefined) {
-      url += '?access_token=' + accessToken;
+    let headers = {};
+    if(accessToken !== undefined) {
+      headers['Authorization'] = accessToken;
     }
 
-    return fetch(url)
+    return fetch(url, {headers: headers})
       .then(response => {
         if (!response.ok) {
           this.handleResponseError(response);
@@ -27,12 +28,13 @@ class SecretService {
   }
 
   async getSecret(secretId, accessToken) {
-    let url = "http://localhost:3001/secrets/" + secretId + ".json"
-    if(accessToken != undefined) {
-      url += '?access_token=' + accessToken;
+    let url = "http://localhost:3001/secrets/" + secretId + ".json";
+    let headers = {};
+    if(accessToken !== undefined) {
+      headers['Authorization'] = accessToken;
     }
 
-    return fetch(url)
+    return fetch(url, {headers: headers})
       .then(response => {
         if (!response.ok) {
             this.handleResponseError(response);
@@ -49,17 +51,16 @@ class SecretService {
   }
 
   async createSecret(secret, accessToken) {
-    let url = "http://localhost:3001/secrets.json"
-    if(accessToken != undefined) {
-      url += '?access_token=' + accessToken;
+    let url = "http://localhost:3001/secrets.json";
+    let headers = {"Content-Type": "application/json"};
+    if(accessToken !== undefined) {
+      headers['Authorization'] = accessToken;
     }
 
     return fetch(url, {
       method: "POST",
       mode: "cors",
-      headers: {
-            "Content-Type": "application/json"
-        },
+      headers: headers,
       body: JSON.stringify(secret)
     })
       .then(response => {
@@ -74,14 +75,16 @@ class SecretService {
   }
 
   async deleteSecret(secretId, accessToken) {
-    let url = "http://localhost:3001/secrets/" + secretId + ".json"
-    if(accessToken != undefined) {
-      url += '?access_token=' + accessToken;
+    let url = "http://localhost:3001/secrets/" + secretId + ".json";
+    let headers = {};
+    if(accessToken !== undefined) {
+      headers['Authorization'] = accessToken;
     }
 
     return fetch(url, {
       method: "DELETE",
-      mode: "cors"
+      mode: "cors",
+      headers: headers
     })
       .then(response => {
         if (!response.ok) {
@@ -94,17 +97,16 @@ class SecretService {
   }
 
   async updateSecret(secret, accessToken) {
-    let url = "http://localhost:3001/secrets/" + secret.id + ".json"
-    if(accessToken != undefined) {
-      url += '?access_token=' + accessToken;
+    let url = "http://localhost:3001/secrets/" + secret.id + ".json";
+    let headers = {"Content-Type": "application/json"};
+    if(accessToken !== undefined) {
+      headers['Authorization'] = accessToken;
     }
 
     return fetch(url, {
       method: "PATCH",
       mode: "cors",
-      headers: {
-            "Content-Type": "application/json"
-        },
+      headers: headers,
       body: JSON.stringify(secret)
     })
       .then(response => {

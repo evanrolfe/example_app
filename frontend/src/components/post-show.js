@@ -23,13 +23,14 @@ class PostShow extends Component {
   }
 
   getPost() {
+    const accessToken = this.props.auth.getAccessToken();
     const postId = this.props.match.params.id;
 
     if(postId == 'new') {
       return;
     }
 
-    this.postService.getPost(postId).then(post => {
+    this.postService.getPost(postId, accessToken).then(post => {
         this.setState({
           post: post
         });

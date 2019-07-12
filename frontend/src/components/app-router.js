@@ -17,6 +17,7 @@ import Auth from '../services/auth';
 class AppRouter extends React.Component {
   render() {
     const auth = new Auth();
+    auth.loadSession();
 
     return (
       <Router>

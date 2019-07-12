@@ -26,7 +26,8 @@ export default class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
-    this.renewSession = this.renewSession.bind(this);
+    this.loadSession = this.loadSession.bind(this);
+    //this.renewSession = this.renewSession.bind(this);
   }
 
   handleAuthentication() {
@@ -37,8 +38,11 @@ export default class Auth {
         if (!authResult || !authResult.idToken) {
           return reject(err);
         }
-        console.log('Setting session...');
-        console.log(authResult);
+        console.log("handleAuthentication()")
+        document.cookie = `expiresIn=${authResult.expiresIn};`;
+        document.cookie = `accessToken=${authResult.accessToken};`;
+        document.cookie = `idToken=${authResult.idToken};`;
+
         this.setSession(authResult);
         resolve();
       });
@@ -53,20 +57,31 @@ export default class Auth {
     return this.idToken;
   }
 
-  setSession(authResult) {
-    // Set isLoggedIn flag in localStorage
-    localStorage.setItem('isLoggedIn', 'true');
+  loadSession() {
+    const expiresIn = this.getCookie('expiresIn');
+    const accessToken = this.getCookie('accessToken');
+    const idToken = this.getCookie('idToken');
 
+    if(expiresIn !== undefined && expiresIn !== '') {
+      const authResult = {expiresIn: expiresIn, accessToken: accessToken, idToken: idToken};
+      this.setSession(authResult);
+    }
+  }
+
+  getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+  }
+
+  setSession(authResult) {
     // Set the time that the Access Token will expire at
     let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
-
-    // navigate to the home route
-    history.replace('/home');
   }
-
+/*
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
        if (authResult && authResult.accessToken && authResult.idToken) {
@@ -78,22 +93,22 @@ export default class Auth {
        }
     });
   }
-
+*/
   logout() {
     // Remove tokens and expiry time
     this.accessToken = null;
     this.idToken = null;
     this.expiresAt = 0;
 
-    // Remove isLoggedIn flag from localStorage
-    localStorage.removeItem('isLoggedIn');
+    // Delete all cookies for this domain
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
 
     this.auth0.logout({
-      returnTo: window.location.origin
+      returnTo: 'http://localhost:3000'
     });
 
     // navigate to the home route
-    history.replace('/home');
+    history.replace('/posts');
   }
 
   isAuthenticated() {

@@ -7,11 +7,12 @@ class PostService {
 
   async retrievePosts(accessToken) {
     let url = this.config.ITEM_COLLECTION_URL;
-    if(accessToken != undefined) {
-      url += '?access_token=' + accessToken;
+    let headers = {};
+    if(accessToken !== undefined && accessToken !== null) {
+      headers['Authorization'] = accessToken;
     }
 
-    return fetch(url)
+    return fetch(url, {headers: headers})
       .then(response => {
         if (!response.ok) {
           this.handleResponseError(response);
@@ -28,11 +29,13 @@ class PostService {
 
   async getPost(postId, accessToken) {
     let url = "http://localhost:3001/posts/" + postId + ".json";
-    if(accessToken != undefined) {
-      url += '?access_token=' + accessToken;
+    let headers = {};
+
+    if(accessToken !== undefined && accessToken !== null) {
+      headers['Authorization'] = accessToken;
     }
 
-    return fetch(url)
+    return fetch(url, {headers: headers})
       .then(response => {
         if (!response.ok) {
             this.handleResponseError(response);
@@ -51,16 +54,15 @@ class PostService {
   async createPost(post, accessToken) {
     console.log("createPost accessToken: " + accessToken);
     let url = "http://localhost:3001/posts.json"
-    if(accessToken != undefined) {
-      url += '?access_token=' + accessToken;
+    let headers = {"Content-Type": "application/json"};
+    if(accessToken !== undefined && accessToken !== null) {
+      headers['Authorization'] = accessToken;
     }
 
     return fetch(url, {
       method: "POST",
       mode: "cors",
-      headers: {
-            "Content-Type": "application/json"
-        },
+      headers: headers,
       body: JSON.stringify(post)
     })
       .then(response => {
@@ -76,12 +78,14 @@ class PostService {
 
   async deletePost(postId, accessToken) {
     let url = "http://localhost:3001/posts/" + postId + ".json"
-    if(accessToken != undefined) {
-      url += '?access_token=' + accessToken;
+    let headers = {};
+    if(accessToken !== undefined && accessToken !== null) {
+      headers['Authorization'] = accessToken;
     }
 
     return fetch(url, {
       method: "DELETE",
+      headers: headers,
       mode: "cors"
     })
       .then(response => {
@@ -96,16 +100,15 @@ class PostService {
 
   async updatePost(post, accessToken) {
     let url = "http://localhost:3001/posts/" + post.id + ".json"
-    if(accessToken != undefined) {
-      url += '?access_token=' + accessToken;
+    let headers = {"Content-Type": "application/json"};
+    if(accessToken !== undefined && accessToken !== null) {
+      headers['Authorization'] = accessToken;
     }
 
     return fetch(url, {
       method: "PATCH",
       mode: "cors",
-      headers: {
-            "Content-Type": "application/json"
-        },
+      headers: headers,
       body: JSON.stringify(post)
     })
       .then(response => {
