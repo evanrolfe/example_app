@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
+import Settings from "./settings";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSettings: false
+    }
+    this.toggleSetting = this.toggleSetting.bind(this);
+  }
+
   login() {
     this.props.auth.login();
   }
+
+  toggleSetting() {
+    this.setState({showSettings: !this.state.showSettings})
+  }
+
   render() {
     const { isAuthenticated } = this.props.auth;
     return (
@@ -31,6 +45,10 @@ class Home extends Component {
         }
 
         <p>Home: Are you logged in? {isAuthenticated() ? 'Yes' : 'No'}</p>
+
+        <button onClick={this.toggleSetting}>Settings</button>
+
+        { this.state.showSettings && <Settings auth={this.props.auth} /> }
       </div>
     );
   }
