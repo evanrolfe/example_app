@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import SettingsService from '../services/settings-service';
 import MoreSettings from "./more-settings";
+import { Link } from "react-router-dom";
 
 class Settings extends React.Component {
   constructor(props) {
@@ -36,9 +37,12 @@ class Settings extends React.Component {
 
         <p>{this.state.settings && this.state.settings.hello}</p>
 
+        <p>Don't forget to read our <Link to="/about">about us</Link> page!</p>
+
         <p>
           Would you like to see more settings? <button onClick={this.toggleMoreSetting}>Yes, Show me!</button>
         </p>
+
 
         { this.state.showMoreSettings && <MoreSettings auth={this.props.auth} /> }
       </div>

@@ -28,7 +28,7 @@ class PostService {
   }
 
   async getPost(postId, accessToken) {
-    let url = "http://localhost:3000/posts/" + postId + ".json";
+    let url = "http://localhost:3001/posts/" + postId + ".json";
     let headers = {};
 
     if(accessToken !== undefined && accessToken !== null) {
@@ -53,7 +53,7 @@ class PostService {
 
   async createPost(post, accessToken) {
     console.log("createPost accessToken: " + accessToken);
-    let url = "http://localhost:3000/posts.json"
+    let url = "http://localhost:3001/posts.json"
     let headers = {"Content-Type": "application/json"};
     if(accessToken !== undefined && accessToken !== null) {
       headers['Authorization'] = accessToken;
@@ -77,7 +77,7 @@ class PostService {
   }
 
   async deletePost(postId, accessToken) {
-    let url = "http://localhost:3000/posts/" + postId + ".json"
+    let url = "http://localhost:3001/posts/" + postId + ".json"
     let headers = {};
     if(accessToken !== undefined && accessToken !== null) {
       headers['Authorization'] = accessToken;
@@ -99,7 +99,7 @@ class PostService {
   }
 
   async updatePost(post, accessToken) {
-    let url = "http://localhost:3000/posts/" + post.id + ".json"
+    let url = "http://localhost:3001/posts/" + post.id + ".json"
     let headers = {"Content-Type": "application/json"};
     if(accessToken !== undefined && accessToken !== null) {
       headers['Authorization'] = accessToken;

@@ -48,6 +48,8 @@ class Home extends Component {
 
         <button onClick={this.toggleSetting}>Settings</button>
 
+        <button>Hello World</button>
+
         { this.state.showSettings && <Settings auth={this.props.auth} /> }
       </div>
     );
