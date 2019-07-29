@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
     render json: { error: exception.message}, status: 401
   end
 
+  protect_from_forgery unless: -> { request.format.json? }
+
   protected
 
   def configure_permitted_parameters
