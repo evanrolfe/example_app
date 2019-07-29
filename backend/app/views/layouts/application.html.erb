@@ -10,23 +10,63 @@
   </head>
 
   <body>
-   <p class="notice"><%= notice %></p>
-   <p class="alert"><%= alert %></p>
+    <header>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>Example App</strong>
+          </a>
 
-  <% if user_signed_in? %>
-    <p>
-      You are logged in as: <%= current_user.name %>
-      <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-    </p>
-  <% else %>
-    <%= link_to 'Login', new_user_session_path %>
-  <% end %>
+          <div style="color: white;">
+            <% if user_signed_in? %>
+              Logged in as: <%= current_user.name %>
 
-  <p>
-    <%= link_to 'Posts', posts_path %> |
-    <%= link_to 'Secrets', secrets_path %>
-  </p>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <button class="btn btn-outline-light" type="submit">Logout</button>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path do %>
+                <button class="btn btn-outline-light" type="submit">Login</button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <%= yield %>
+    <main role="main">
+      <div class="container" style="margin-top: 10px;">
+        <% if notice.present? %>
+
+          <div class="alert alert-success" role="alert">
+            <%= notice %>
+          </div>
+        <% end %>
+
+        <% if alert.present? %>
+          <div class="alert alert-danger" role="alert">
+            <%= alert %>
+          </div>
+        <% end %>
+
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <%= link_to posts_path, class: "nav-link #{class_for_nav('/posts')}" do %>
+              Posts
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to secrets_path, class: "nav-link #{class_for_nav('/secrets')}" do %>
+              Secrets
+            <% end %>
+          </li>
+        </ul>
+
+      </div>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </main>
   </body>
 </html>

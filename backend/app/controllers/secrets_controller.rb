@@ -1,6 +1,6 @@
 class SecretsController < ApplicationController
   before_action :set_secret, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   protect_from_forgery unless: -> { request.format.json? }
 

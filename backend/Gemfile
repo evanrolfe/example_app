@@ -28,6 +28,7 @@ gem 'rack-cors'
 gem 'jwt'
 gem 'json-jwt'
 gem 'faker'
+gem 'bootstrap'
 
 group :development, :test do
   gem 'pry'
