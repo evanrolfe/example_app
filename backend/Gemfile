@@ -29,6 +29,7 @@ gem 'jwt'
 gem 'json-jwt'
 gem 'faker'
 gem 'bootstrap'
+gem 'activerecord-session_store'
 
 group :development, :test do
   gem 'pry'
