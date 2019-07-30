@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
-import AuthService from '../services/auth-service';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.authService = new AuthService();
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -26,26 +24,7 @@ class Login extends Component {
   }
 
   onSubmit() {
-    return fetch('http://localhost/api/users/sign_in.json', {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      mode: "cors",
-      body: JSON.stringify({
-        'user': {
-          'email': this.state.user.email,
-          'password': this.state.user.password
-        }
-      })
-    })
-      .then(response => {
-       if (!response.ok) {
-          console.log(response.json());
-        }
-        return response.json();
-      })
-      .catch(error => {
-        alert(error);
-      });
+    this.props.auth.login(this.state.user.email, this.state.user.password)
   }
 
   render() {

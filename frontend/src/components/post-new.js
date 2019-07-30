@@ -29,9 +29,7 @@ class PostNew extends Component {
   }
 
   onSubmit() {
-    const accessToken = this.props.auth.getAccessToken();
-
-    this.postService.createPost(this.state.post, accessToken).then(post => {
+    this.postService.createPost(this.state.post).then(post => {
         this.props.history.push('/posts/' + post.id);
       }
     );

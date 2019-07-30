@@ -15,11 +15,9 @@ class SecretsTable extends Component {
   }
 
   getSecrets() {
-    const accessToken = this.props.auth.getAccessToken();
-
-    this.secretService.retrieveSecrets(accessToken).then(secrets => {
-          this.setState({secrets: secrets});
-        }
+    this.secretService.retrieveSecrets().then(secrets => {
+        this.setState({secrets: secrets});
+      }
     );
   }
 

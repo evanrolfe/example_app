@@ -22,9 +22,7 @@ class Settings extends React.Component {
   }
 
   getSettings() {
-    const accessToken = this.props.auth.getAccessToken();
-
-    this.settingsService.getSettings('one', accessToken).then(settings => {
+    this.settingsService.getSettings('one').then(settings => {
         this.setState({settings: settings});
       }
     );

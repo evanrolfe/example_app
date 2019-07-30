@@ -29,7 +29,7 @@ class SecretNew extends Component {
   }
 
   onSubmit() {
-    this.secretService.createSecret(this.state.secret, this.props.auth.getAccessToken()).then(secret => {
+    this.secretService.createSecret(this.state.secret).then(secret => {
         this.props.history.push('/secrets/' + secret.id);
       }
     );

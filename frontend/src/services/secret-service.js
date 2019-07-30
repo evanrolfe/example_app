@@ -5,12 +5,9 @@ class SecretService {
     this.config = new Config();
   }
 
-  async retrieveSecrets(accessToken) {
+  async retrieveSecrets() {
     let url = "http://localhost/api/secrets.json";
     let headers = {};
-    if(accessToken !== undefined) {
-      headers['Authorization'] = accessToken;
-    }
 
     return fetch(url, {headers: headers})
       .then(response => {
@@ -27,12 +24,9 @@ class SecretService {
       });
   }
 
-  async getSecret(secretId, accessToken) {
+  async getSecret(secretId) {
     let url = "http://localhost/api/secrets/" + secretId + ".json";
     let headers = {};
-    if(accessToken !== undefined) {
-      headers['Authorization'] = accessToken;
-    }
 
     return fetch(url, {headers: headers})
       .then(response => {
@@ -50,12 +44,9 @@ class SecretService {
       });
   }
 
-  async createSecret(secret, accessToken) {
+  async createSecret(secret) {
     let url = "http://localhost/api/secrets.json";
     let headers = {"Content-Type": "application/json"};
-    if(accessToken !== undefined) {
-      headers['Authorization'] = accessToken;
-    }
 
     return fetch(url, {
       method: "POST",
@@ -74,12 +65,9 @@ class SecretService {
       });
   }
 
-  async deleteSecret(secretId, accessToken) {
+  async deleteSecret(secretId) {
     let url = "http://localhost/api/secrets/" + secretId + ".json";
     let headers = {};
-    if(accessToken !== undefined) {
-      headers['Authorization'] = accessToken;
-    }
 
     return fetch(url, {
       method: "DELETE",
@@ -96,12 +84,9 @@ class SecretService {
       });
   }
 
-  async updateSecret(secret, accessToken) {
+  async updateSecret(secret) {
     let url = "http://localhost/api/secrets/" + secret.id + ".json";
     let headers = {"Content-Type": "application/json"};
-    if(accessToken !== undefined) {
-      headers['Authorization'] = accessToken;
-    }
 
     return fetch(url, {
       method: "PATCH",

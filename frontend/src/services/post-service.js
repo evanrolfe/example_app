@@ -5,12 +5,9 @@ class PostService {
     this.config = new Config();
   }
 
-  async retrievePosts(accessToken) {
+  async retrievePosts() {
     let url = this.config.ITEM_COLLECTION_URL;
     let headers = {};
-    if(accessToken !== undefined && accessToken !== null) {
-      headers['Authorization'] = accessToken;
-    }
 
     return fetch(url, {headers: headers})
       .then(response => {
@@ -27,13 +24,9 @@ class PostService {
       });
   }
 
-  async getPost(postId, accessToken) {
+  async getPost(postId) {
     let url = "http://localhost/api/posts/" + postId + ".json";
     let headers = {};
-
-    if(accessToken !== undefined && accessToken !== null) {
-      headers['Authorization'] = accessToken;
-    }
 
     return fetch(url, {headers: headers})
       .then(response => {
@@ -51,13 +44,9 @@ class PostService {
       });
   }
 
-  async createPost(post, accessToken) {
-    console.log("createPost accessToken: " + accessToken);
+  async createPost(post) {
     let url = "http://localhost/api/posts.json"
     let headers = {"Content-Type": "application/json"};
-    if(accessToken !== undefined && accessToken !== null) {
-      headers['Authorization'] = accessToken;
-    }
 
     return fetch(url, {
       method: "POST",
@@ -76,12 +65,9 @@ class PostService {
       });
   }
 
-  async deletePost(postId, accessToken) {
+  async deletePost(postId) {
     let url = "http://localhost/api/posts/" + postId + ".json"
     let headers = {};
-    if(accessToken !== undefined && accessToken !== null) {
-      headers['Authorization'] = accessToken;
-    }
 
     return fetch(url, {
       method: "DELETE",
@@ -98,12 +84,9 @@ class PostService {
       });
   }
 
-  async updatePost(post, accessToken) {
+  async updatePost(post) {
     let url = "http://localhost/api/posts/" + post.id + ".json"
     let headers = {"Content-Type": "application/json"};
-    if(accessToken !== undefined && accessToken !== null) {
-      headers['Authorization'] = accessToken;
-    }
 
     return fetch(url, {
       method: "PATCH",

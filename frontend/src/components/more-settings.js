@@ -15,9 +15,7 @@ class MoreSettings extends React.Component {
   }
 
   getSettings() {
-    const accessToken = this.props.auth.getAccessToken();
-
-    this.settingsService.getSettings('two', accessToken).then(settings => {
+    this.settingsService.getSettings('two').then(settings => {
         this.setState({moreSettings: settings});
       }
     );

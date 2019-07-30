@@ -23,14 +23,13 @@ class PostShow extends Component {
   }
 
   getPost() {
-    const accessToken = this.props.auth.getAccessToken();
     const postId = this.props.match.params.id;
 
     if(postId == 'new') {
       return;
     }
 
-    this.postService.getPost(postId, accessToken).then(post => {
+    this.postService.getPost(postId).then(post => {
         this.setState({
           post: post
         });
@@ -43,7 +42,7 @@ class PostShow extends Component {
     if(window.confirm("Are you sure to delete post: " + post.title + " ?")) {
       const postId = this.props.match.params.id;
 
-      this.postService.deletePost(postId, this.props.auth.getAccessToken()).then(post => {
+      this.postService.deletePost(postId).then(post => {
           this.props.history.push('/posts');
         }
       );

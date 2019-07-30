@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Nav from './nav';
-import AuthCallback from './auth-callback';
 import PostsTable from "./posts-table";
 import PostShow from "./post-show";
 import PostEdit from "./post-edit";
@@ -19,7 +18,6 @@ import Auth from '../services/auth';
 class AppRouter extends React.Component {
   render() {
     const auth = new Auth();
-    auth.loadSession();
 
     return (
       <Router>
@@ -35,7 +33,6 @@ class AppRouter extends React.Component {
           <Route exact path="/secrets/new" render={(props) => <SecretNew auth={auth} {...props} />} />
           <Route exact path="/secrets/:id" render={(props) => <SecretShow auth={auth} {...props} />} />
           <Route exact path="/secrets/:id/edit" render={(props) => <SecretEdit auth={auth} {...props} />} />
-          <Route exact path='/auth_callback' render={() => (<AuthCallback auth={auth}/>)} />
       </Router>
     );
   }

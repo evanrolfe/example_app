@@ -16,10 +16,9 @@ class PostsTable extends Component {
   }
 
   getPosts() {
-    const accessToken = this.props.auth.getAccessToken();
-    this.postService.retrievePosts(accessToken).then(posts => {
-          this.setState({posts: posts});
-        }
+    this.postService.retrievePosts().then(posts => {
+        this.setState({posts: posts});
+      }
     );
   }
 

@@ -44,7 +44,7 @@ class PostEdit extends Component {
   }
 
   onSubmit() {
-    this.postService.updatePost(this.state.post, this.props.auth.getAccessToken()).then(post => {
+    this.postService.updatePost(this.state.post).then(post => {
         this.props.history.push('/posts/' + this.state.post.id);
       }
     );
