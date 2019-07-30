@@ -104,7 +104,7 @@ export default class Auth {
     document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
 
     this.auth0.logout({
-      returnTo: 'http://localhost:3000'
+      returnTo: 'http://localhost/api'
     });
 
     // navigate to the home route

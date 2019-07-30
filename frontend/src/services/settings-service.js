@@ -2,7 +2,7 @@ import Config from '../config/config';
 
 class SettingsService {
   async getSettings(page, accessToken) {
-    let url = `http://localhost:3001/settings/${page}.json`;
+    let url = `http://localhost/api/settings/${page}.json`;
     let headers = {};
     if(accessToken !== undefined && accessToken !== null) {
       headers['Authorization'] = accessToken;

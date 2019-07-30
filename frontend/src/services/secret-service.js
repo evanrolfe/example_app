@@ -6,7 +6,7 @@ class SecretService {
   }
 
   async retrieveSecrets(accessToken) {
-    let url = "http://localhost:3001/secrets.json";
+    let url = "http://localhost/api/secrets.json";
     let headers = {};
     if(accessToken !== undefined) {
       headers['Authorization'] = accessToken;
@@ -28,7 +28,7 @@ class SecretService {
   }
 
   async getSecret(secretId, accessToken) {
-    let url = "http://localhost:3001/secrets/" + secretId + ".json";
+    let url = "http://localhost/api/secrets/" + secretId + ".json";
     let headers = {};
     if(accessToken !== undefined) {
       headers['Authorization'] = accessToken;
@@ -51,7 +51,7 @@ class SecretService {
   }
 
   async createSecret(secret, accessToken) {
-    let url = "http://localhost:3001/secrets.json";
+    let url = "http://localhost/api/secrets.json";
     let headers = {"Content-Type": "application/json"};
     if(accessToken !== undefined) {
       headers['Authorization'] = accessToken;
@@ -75,7 +75,7 @@ class SecretService {
   }
 
   async deleteSecret(secretId, accessToken) {
-    let url = "http://localhost:3001/secrets/" + secretId + ".json";
+    let url = "http://localhost/api/secrets/" + secretId + ".json";
     let headers = {};
     if(accessToken !== undefined) {
       headers['Authorization'] = accessToken;
@@ -97,7 +97,7 @@ class SecretService {
   }
 
   async updateSecret(secret, accessToken) {
-    let url = "http://localhost:3001/secrets/" + secret.id + ".json";
+    let url = "http://localhost/api/secrets/" + secret.id + ".json";
     let headers = {"Content-Type": "application/json"};
     if(accessToken !== undefined) {
       headers['Authorization'] = accessToken;

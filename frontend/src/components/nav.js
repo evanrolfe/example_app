@@ -19,7 +19,7 @@ class Nav extends React.Component {
           {
             !this.props.auth.isAuthenticated() && (
               <li>
-                <a href="#" onClick={this.props.auth.login} id="login-link">Log In</a>
+                <Link to="/login">Login</Link>
               </li>
             )
           }

@@ -21,6 +21,7 @@ class SecretNew extends Component {
     const value = event.target.value;
     const name = event.target.name;
 
+    // TODO: this newState line looks wrong
     const newState = Object.assign({ [name]: value }, this.state);
     newState.secret[name] = value;
 

@@ -12,4 +12,10 @@ services:
       - ./backend:/app
     ports:
       - "3001:3001"
-
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx:/etc/nginx
+    ports:
+      - "80:80"

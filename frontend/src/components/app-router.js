@@ -13,6 +13,7 @@ import SecretEdit from "./secret-edit";
 import SecretNew from "./secret-new";
 import Home from "./home";
 import About from "./about";
+import Login from "./login";
 import Auth from '../services/auth';
 
 class AppRouter extends React.Component {
@@ -25,6 +26,7 @@ class AppRouter extends React.Component {
           <Route path="/" render={(props) => <Nav auth={auth} {...props} />} />
           <Route exact path="/" render={(props) => <Home auth={auth} {...props} />} />
           <Route exact path="/about" render={(props) => <About auth={auth} {...props} />} />
+          <Route exact path="/login" render={(props) => <Login auth={auth} {...props} />} />
           <Route exact path="/posts" render={(props) => <PostsTable auth={auth} {...props} />} />
           <Route exact path="/posts/new" render={(props) => <PostNew auth={auth} {...props} />} />
           <Route exact path="/posts/:id" render={(props) => <PostShow auth={auth} {...props} />} />
