@@ -6,12 +6,12 @@ export default class Auth {
     this._loginRequest = this._loginRequest.bind(this);
     this.logout = this.logout.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
-    this.currentUser = null;
+    this.currentUser = this.currentUser.bind(this);
   }
 
   async login(email, password) {
     const user = await this._loginRequest(email, password)
-    localStorage.setItem('currentUser', user);
+    localStorage.setItem('currentUser', user.name);
     console.log(`Logged in as: ${user.email}`)
 
     // TODO: Why does this redirect not work?

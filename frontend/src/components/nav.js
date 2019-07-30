@@ -7,7 +7,7 @@ class Nav extends React.Component {
     return (
       <nav>
         <ul>
-        <li>
+          <li>
             <Link to="/">Home</Link>
           </li>
           <li>
@@ -16,20 +16,6 @@ class Nav extends React.Component {
           <li>
             <Link to="/secrets/">Secrets</Link>
           </li>
-          {
-            !this.props.auth.isAuthenticated() && (
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            )
-          }
-          {
-            this.props.auth.isAuthenticated() && (
-              <li>
-                <a href="#" onClick={this.props.auth.logout} id="logout-link">Log Out</a>
-              </li>
-            )
-          }
         </ul>
       </nav>
     );
