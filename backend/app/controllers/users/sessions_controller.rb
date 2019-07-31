@@ -9,11 +9,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  def create
-    params.delete(:session)
-    binding.pry
-    super
-  end
+  # def create
+  #   params.delete(:session)
+  #   super
+  # end
 
   # DELETE /resource/sign_out
   # def destroy

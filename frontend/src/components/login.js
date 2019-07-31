@@ -23,7 +23,8 @@ class Login extends Component {
     this.setState(newState);
   }
 
-  async onSubmit() {
+  async onSubmit(event) {
+    event.preventDefault();
     const response = await this.props.auth.login(this.state.user.email, this.state.user.password);
 
     if(response.error != undefined) {
@@ -41,20 +42,22 @@ class Login extends Component {
       <div className="App">
         <h2>Login</h2>
 
-        {this.state.incorrectLogin && <Alert variant="danger">Incorrect login.</Alert>}
+        <form onSubmit={this.onSubmit}>
+          {this.state.incorrectLogin && <Alert variant="danger">Incorrect login.</Alert>}
 
-        <p>
-          <b>Email:</b>
-          <input name="email" required onChange={this.handleInputChange} />
-        </p>
-        <p>
-          <b>Password:</b>
-          <input name="password" type="password" required onChange={this.handleInputChange} />
-        </p>
+          <p>
+            <b>Email:</b>
+            <input name="email" required onChange={this.handleInputChange} />
+          </p>
+          <p>
+            <b>Password:</b>
+            <input name="password" type="password" required onChange={this.handleInputChange} />
+          </p>
 
-        <p>
-        <button onClick={() => this.onSubmit()}>Login</button>
-        </p>
+          <p>
+          <button type="submit" id="login-button">Login</button>
+          </p>
+        </form>
       </div>
     );
   }
