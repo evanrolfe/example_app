@@ -10,12 +10,16 @@ export default class Auth {
   }
 
   async login(email, password) {
-    const user = await this._loginRequest(email, password)
-    localStorage.setItem('currentUser', user.name);
-    console.log(`Logged in as: ${user.email}`)
+    const response = await this._loginRequest(email, password);
 
-    // TODO: Why does this redirect not work?
-    history.push('/');
+    if(response.error != undefined) {
+      console.log(`Error logging in: ${response.error}`);
+    } else {
+      localStorage.setItem('currentUser', response.name);
+      console.log(`Logged in as: ${response.email}`);
+    }
+
+    return response;
   }
 
   async _loginRequest(email, password) {
@@ -31,9 +35,6 @@ export default class Auth {
       })
     })
       .then(response => {
-       if (!response.ok) {
-          console.log(response.json());
-        }
         return response.json();
       })
       .catch(error => {
@@ -41,9 +42,9 @@ export default class Auth {
       });
   }
 
+  // TODO: Make this send an API request to /api/users/sign_out.json to clear the cookie since its httponly
   logout() {
     localStorage.removeItem('currentUser');
-    history.replace('/');
   }
 
   isAuthenticated() {

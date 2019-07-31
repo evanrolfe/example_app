@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
+import Alert from 'react-bootstrap/Alert';
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
@@ -8,9 +10,7 @@ class Login extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-    this.state = {
-      user: {}
-    };
+    this.state = {user: {}, incorrectLogin: false};
   }
 
   handleInputChange(event) {
@@ -23,14 +23,25 @@ class Login extends Component {
     this.setState(newState);
   }
 
-  onSubmit() {
-    this.props.auth.login(this.state.user.email, this.state.user.password)
+  async onSubmit() {
+    const response = await this.props.auth.login(this.state.user.email, this.state.user.password);
+
+    if(response.error != undefined) {
+      this.setState({user: {}, incorrectLogin: true});
+    } else {
+      const newState = Object.assign({}, this.state);
+      newState.user = { name: response.name };
+      this.setState(newState);
+      this.props.history.push(`/secrets`);
+    }
   }
 
   render() {
     return (
       <div className="App">
         <h2>Login</h2>
+
+        {this.state.incorrectLogin && <Alert variant="danger">Incorrect login.</Alert>}
 
         <p>
           <b>Email:</b>
