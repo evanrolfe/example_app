@@ -34,6 +34,7 @@ gem 'activerecord-session_store'
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.8'
+  gem 'seed_dump'
 end
 
 group :development do
