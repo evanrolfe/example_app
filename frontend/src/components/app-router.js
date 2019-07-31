@@ -29,7 +29,6 @@ class AppRouter extends React.Component {
         <header>
           <Navbar bg="primary" variant="dark">
             <Navbar.Brand href="#home">React Example App</Navbar.Brand>
-            <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
               {
                 !auth.isAuthenticated() && (
