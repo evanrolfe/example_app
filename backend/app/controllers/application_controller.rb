@@ -8,8 +8,9 @@ class ApplicationController < ActionController::Base
   before_action :verify_jwt_token
 
   rescue_from Pundit::NotAuthorizedError do |exception|
-    render json: { error: exception.message}, status: 401
+    render json: { error: 'Unauthorised' }, status: 401
   end
+  protect_from_forgery unless: -> { request.format.json? }
 
   protected
 

@@ -1,25 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-User.create(
-  id: 1,
-  email: 'evan@gmail.com',
-  name: 'Evan Rolfe',
-  password: 'pass'
-)
-User.create(
-  id: 2,
-  email: 'tom@gmail.com',
-  name: 'Tom Smith',
-  password: 'pass'
-)
-
-Post.create(id: 1, title: "My first post!x", body: "Hello world, this is my amazing post!!!", user_id: 1)
-Post.create(id: 2, title: "WHat an amazing site!", body: "This is such a good site, love it, Tom.", user_id: 2)
-
-Secret.create(id: 1, name: "Fav colour", value: "Pink", user_id: 2)
-Secret.create(id: 2, name: "Fav colour", value: "Blue", user_id: 1)
+# All the passwords for users are just "password"
+User.create!([
+  {email: "alice@authcov.io", name: "Alice", password: 'password', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil},
+  {email: "bob@authcov.io", name: "Bob", password: 'password', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil},
+  {email: "celine@authcov.io", name: "Celine", password: 'password', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil}
+])
+Post.create!([
+  {title: "Hello", body: "World", user_id: 'auth0|5d0b85ece89b620d08ce4158'},
+  {title: "Bye", body: "World", user_id: 'auth0|5d0b85ece89b620d08ce4158'},
+  {title: "Hello", body: "Just a greeting from Bob.", user_id: 2},
+  {title: "Hey", body: "Hey Bob, how are you?", user_id: 3}
+])
+Secret.create!([
+  {name: "PIN Code", value: "7752", user_id: 'auth0|5d0b85ece89b620d08ce4158'},
+  {name: "Bob's Secret", value: "My favorite colour is brown.", user_id: 2},
+  {name: "Spare key location", value: "Under the flower pot.", user_id: 3},
+  {name: "Celebrity Crush", value: "Danny DeVito", user_id: 3}
+])
