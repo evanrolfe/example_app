@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from Pundit::NotAuthorizedError do |exception|
-    render json: { error: exception.message}, status: 401
+    render json: { error: 'Not Authorized'}, status: 401
   end
 
   protect_from_forgery unless: -> { request.format.json? }
