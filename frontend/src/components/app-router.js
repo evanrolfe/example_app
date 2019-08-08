@@ -13,6 +13,7 @@ import SecretNew from "./secret-new";
 import Home from "./home";
 import About from "./about";
 import Login from "./login";
+import Slow from "./slow";
 import Auth from '../services/auth';
 
 import Navbar from 'react-bootstrap/Navbar';
@@ -49,7 +50,6 @@ class AppRouter extends React.Component {
         </header>
 
         <Container>
-
               <Route path="/" render={(props) => <Nav auth={auth} {...props} />} />
               <Route exact path="/" render={(props) => <Home auth={auth} {...props} />} />
               <Route exact path="/about" render={(props) => <About auth={auth} {...props} />} />
@@ -62,6 +62,8 @@ class AppRouter extends React.Component {
               <Route exact path="/secrets/new" render={(props) => <SecretNew auth={auth} {...props} />} />
               <Route exact path="/secrets/:id" render={(props) => <SecretShow auth={auth} {...props} />} />
               <Route exact path="/secrets/:id/edit" render={(props) => <SecretEdit auth={auth} {...props} />} />
+              <Route exact path="/slow" render={(props) => <Slow sleepFor={4} auth={auth} {...props} />} />
+              <Route exact path="/really_slow" render={(props) => <Slow sleepFor={6} auth={auth} {...props} />} />
         </Container>
         </Router>
       </div>

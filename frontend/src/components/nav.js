@@ -16,6 +16,12 @@ class Nav extends React.Component {
           <li>
             <Link to="/secrets/">Secrets</Link>
           </li>
+          <li>
+            <Link to="/slow/">A Slow Page</Link>
+          </li>
+          <li>
+            <Link to="/really_slow/">A Really Slow Page</Link>
+          </li>
         </ul>
       </nav>
     );

@@ -12,7 +12,9 @@ class SettingsController < ApplicationController
     render json: { 'hello' => 'world2' }
   end
 
-  def three
-    render json: { 'hello' => 'world3' }
+  def slow_request
+    seconds = params[:sleep_for] || 5
+    sleep(seconds.to_i)
+    render json: { 'message' => 'Hello world (from the slow controller)' }
   end
 end

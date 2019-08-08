@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   get '/settings/one', to: 'settings#one'
   get '/settings/two', to: 'settings#two'
-  get '/settings/three', to: 'settings#three'
+  get '/slow_request', to: 'settings#slow_request'
 end

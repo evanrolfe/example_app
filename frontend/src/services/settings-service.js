@@ -20,6 +20,25 @@ class SettingsService {
       });
   }
 
+  async getSlowRequest(sleepFor) {
+    let url = `http://localhost/api/slow_request.json?sleep_for=${sleepFor}`;
+    let headers = {};
+
+    return fetch(url, {headers: headers})
+      .then(response => {
+        if (!response.ok) {
+          this.handleResponseError(response);
+        }
+        return response.json();
+      })
+      .then(json => {
+        return json;
+      })
+      .catch(error => {
+        this.handleError(error);
+      });
+  }
+
   handleResponseError(response) {
       throw new Error("HTTP error, status = " + response.status);
   }
