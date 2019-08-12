@@ -5,6 +5,7 @@ class SettingsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
   def one
+    sleep 2
     render json: { 'hello' => 'world1' }
   end
 
