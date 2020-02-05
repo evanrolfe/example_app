@@ -72,6 +72,8 @@ class PostShow extends Component {
           <Link to={"/posts/" + post.id + "/edit"}>Edit</Link> ||
           <a href="#" onClick={() => this.onDelete()}>Delete</a>
         </p>
+
+        <p><img src="https://avatars2.githubusercontent.com/u/9274?s=460&v=4" /></p>
       </div>
     );
   }
