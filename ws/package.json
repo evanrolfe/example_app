@@ -1,0 +1,11 @@
+{
+  "name": "ws",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "ws": "^7.2.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

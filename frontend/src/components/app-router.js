@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Nav from './nav';
+import Chat from "./chat";
 import PostsTable from "./posts-table";
 import PostShow from "./post-show";
 import PostEdit from "./post-edit";
@@ -53,6 +54,7 @@ class AppRouter extends React.Component {
               <Route path="/" render={(props) => <Nav auth={auth} {...props} />} />
               <Route exact path="/" render={(props) => <Home auth={auth} {...props} />} />
               <Route exact path="/about" render={(props) => <About auth={auth} {...props} />} />
+              <Route exact path="/chat" render={(props) => <Chat auth={auth} {...props} />} />
               <Route exact path="/login" render={(props) => <Login auth={auth} {...props} />} />
               <Route exact path="/posts" render={(props) => <PostsTable auth={auth} {...props} />} />
               <Route exact path="/posts/new" render={(props) => <PostNew auth={auth} {...props} />} />
