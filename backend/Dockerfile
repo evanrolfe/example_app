@@ -2,6 +2,7 @@ FROM ruby:2.5
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get install -y nodejs
 RUN mkdir /app
 WORKDIR /app
+RUN gem install bundler -v 2.2.33
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
