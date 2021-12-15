@@ -7,7 +7,6 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 COPY . /app
-RUN bundle exec rails db:setup
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
